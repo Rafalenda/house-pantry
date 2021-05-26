@@ -1,10 +1,10 @@
-.App header {
+.App section {
   text-align: center;
   margin: 20px;
   color: rgb(19, 28, 153);
   border: solid 1px cadetblue;
   border-radius: 20px;
-  box-shadow: 5px 5px 15px 5px cornflowerblue;
+  box-shadow: 5px 5px 10px 5px rgb(152, 182, 238);
 }
 .App {
   text-align: center;
