@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Table() {
+  const [products, setProducts] = useState([]);
+
+  function displayProducts(response) {
+    console.log(response.data);
+    setProducts(response.data);
+  }
+
+  useEffect(() => {
+    const mockApiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products`;
+    axios.get(mockApiUrl).then(displayProducts);
+  }, []);
+
   return (
     <div className="Table container">
       <div className="row">
         <div className="col-4 offset-4">
-          <table class="table table-bordered">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th scope="col">Amount</th>
@@ -13,30 +26,14 @@ export default function Table() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>3</td>
-                <td>banana</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>avocado</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>sauce</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>pasta</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>shampoo</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>laundry detergent</td>
-              </tr>
+              {products.map((currentItem, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{currentItem.amount}</td>
+                    <td>{currentItem.product}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
