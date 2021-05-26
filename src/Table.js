@@ -5,7 +5,6 @@ export default function Table() {
   const [products, setProducts] = useState([]);
 
   function displayProducts(response) {
-    console.log(response.data);
     setProducts(response.data);
   }
 
@@ -17,7 +16,7 @@ export default function Table() {
   return (
     <div className="Table container">
       <div className="row">
-        <div className="col-4 offset-4">
+        <div className="col-md-4 offset-md-4">
           <table className="table table-bordered">
             <thead>
               <tr>
