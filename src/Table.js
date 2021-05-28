@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function Table() {
   const [products, setProducts] = useState([]);
+  const [lastUpdate, setLastUpdate] = useState(0);
 
   function displayProducts(response) {
     setProducts(response.data);
@@ -11,11 +12,13 @@ export default function Table() {
   useEffect(() => {
     const mockApiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products`;
     axios.get(mockApiUrl).then(displayProducts);
-  }, []);
+  }, [lastUpdate]);
 
   function handleClick(id) {
     const apiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products/${id}`;
-    axios.delete(apiUrl).then();
+    axios.delete(apiUrl).then(() => {
+      setLastUpdate(lastUpdate + 1);
+    });
   }
 
   return (
@@ -30,9 +33,9 @@ export default function Table() {
               </tr>
             </thead>
             <tbody>
-              {products.map((currentItem, index) => {
+              {products.map((currentItem) => {
                 return (
-                  <tr key={index}>
+                  <tr key={currentItem.id}>
                     <td>{currentItem.amount}</td>
                     <td>{currentItem.product}</td>
                     <td>
