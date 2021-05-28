@@ -5,6 +5,7 @@
   border: solid 1px cadetblue;
   border-radius: 20px;
   box-shadow: 5px 5px 10px 5px rgb(152, 182, 238);
+  background-color: rgba(244, 252, 252, 0.85);
 }
 .App {
   text-align: center;
