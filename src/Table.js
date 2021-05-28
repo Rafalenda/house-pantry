@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Add from "./Add";
 import axios from "axios";
 
 export default function Table() {
@@ -20,9 +21,17 @@ export default function Table() {
       setLastUpdate(lastUpdate + 1);
     });
   }
+  function addItem() {
+    setLastUpdate(lastUpdate + 1);
+  }
 
   return (
     <div className="Table container">
+      <Add
+        onChange={() => {
+          addItem();
+        }}
+      />
       <div className="row">
         <div className="col-md-4 offset-md-4">
           <table className="table table-bordered">

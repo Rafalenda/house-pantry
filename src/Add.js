@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-export default function Add() {
+export default function Add(props) {
   //
   function handleSubmit(event) {
     event.preventDefault();
@@ -12,7 +12,7 @@ export default function Add() {
     };
     console.log(newProduct);
     const apiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products`;
-    axios.post(apiUrl, newProduct).then();
+    axios.post(apiUrl, newProduct).then(props.onChange);
   }
 
   return (
