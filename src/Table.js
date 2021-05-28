@@ -13,6 +13,11 @@ export default function Table() {
     axios.get(mockApiUrl).then(displayProducts);
   }, []);
 
+  function handleClick(id) {
+    const apiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products/${id}`;
+    axios.delete(apiUrl).then();
+  }
+
   return (
     <div className="Table container">
       <div className="row">
@@ -30,6 +35,17 @@ export default function Table() {
                   <tr key={index}>
                     <td>{currentItem.amount}</td>
                     <td>{currentItem.product}</td>
+                    <td>
+                      <button
+                        type="submit"
+                        className="btn btn-danger  btn-sm"
+                        onClick={() => {
+                          handleClick(currentItem.id);
+                        }}
+                      >
+                        X
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
