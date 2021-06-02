@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Add from "./Add";
+import Update from "./Update";
 import axios from "axios";
 
 export default function Table() {
@@ -15,12 +16,13 @@ export default function Table() {
     axios.get(mockApiUrl).then(displayProducts);
   }, [lastUpdate]);
 
-  function handleClick(id) {
+  function handleClickDelete(id) {
     const apiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products/${id}`;
     axios.delete(apiUrl).then(() => {
       setLastUpdate(lastUpdate + 1);
     });
   }
+
   function addItem() {
     setLastUpdate(lastUpdate + 1);
   }
@@ -53,11 +55,14 @@ export default function Table() {
                         type="submit"
                         className="btn btn-danger  btn-sm"
                         onClick={() => {
-                          handleClick(currentItem.id);
+                          handleClickDelete(currentItem.id);
                         }}
                       >
                         X
                       </button>
+                    </td>
+                    <td>
+                      <Update />
                     </td>
                   </tr>
                 );

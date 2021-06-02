@@ -11,7 +11,6 @@ export default function App() {
             <p class="h3 fs-3 text-muted">Welcome to your virtual pantry</p>
           </header>
         </section>
-
         <section>
           <Table />
         </section>
