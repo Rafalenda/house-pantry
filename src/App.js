@@ -8,12 +8,11 @@ export default function App() {
         <section>
           <header>
             <h1 className="display-1">Pantry Manager</h1>
-            <h2 className="display-3">Welcome to your virtual pantry</h2>
+            <p class="h3 fs-3 text-muted">Welcome to your virtual pantry</p>
           </header>
         </section>
 
         <section>
-          <h4 className="display-6">Here's your current list of products:</h4>
           <Table />
         </section>
       </div>

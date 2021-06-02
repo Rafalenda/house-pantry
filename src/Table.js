@@ -33,6 +33,7 @@ export default function Table() {
         }}
       />
       <div className="row">
+        <h6 className="display-6">Your current list of products</h6>
         <div className="col-md-4 offset-md-4">
           <table className="table table-bordered">
             <thead>

@@ -1,4 +1,6 @@
 import React from "react";
+import "./Add.css";
+
 import axios from "axios";
 
 export default function Add(props) {
@@ -18,8 +20,6 @@ export default function Add(props) {
   return (
     <div className="Add">
       <div className="container">
-        <h4 className="display-6">Add a new product:</h4>
-
         <form className="row g-3" onSubmit={handleSubmit}>
           <div className="col-md-6 offset-md-1">
             <span>
