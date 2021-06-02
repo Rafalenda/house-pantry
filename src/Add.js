@@ -40,8 +40,8 @@ export default function Add(props) {
             </span>
           </div>
           <div className="col-md-auto">
-            <button type="submit" className="btn btn-primary mb-3">
-              Add product
+            <button type="submit" className="btn btn-success mb-3">
+              ✔
             </button>
           </div>
         </form>
