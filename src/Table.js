@@ -50,10 +50,10 @@ export default function Table() {
             <tbody>
               {products.map((currentItem) => {
                 let columns = [];
-                columns.push(<td>{currentItem.amount}</td>);
-                columns.push(<td>{currentItem.product}</td>);
+                columns.push(<td key="0">{currentItem.amount}</td>);
+                columns.push(<td key="1">{currentItem.product}</td>);
                 columns.push(
-                  <td>
+                  <td key="2">
                     <button
                       type="submit"
                       className="btn btn-danger  btn-sm"
@@ -66,7 +66,7 @@ export default function Table() {
                   </td>
                 );
                 columns.push(
-                  <td>
+                  <td key="3">
                     <button
                       className="btn btn-success  btn-sm"
                       onClick={() => {
