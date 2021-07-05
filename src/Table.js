@@ -50,8 +50,29 @@ export default function Table() {
             <tbody>
               {products.map((currentItem) => {
                 let columns = [];
-                columns.push(<td key="0">{currentItem.amount}</td>);
-                columns.push(<td key="1">{currentItem.product}</td>);
+
+                columns.push(
+                  <td
+                    key="0"
+                    onClick={() => {
+                      SetProductEdited(currentItem.id);
+                    }}
+                  >
+                    {currentItem.amount}
+                  </td>
+                );
+
+                columns.push(
+                  <td
+                    key="1"
+                    onClick={() => {
+                      SetProductEdited(currentItem.id);
+                    }}
+                  >
+                    {currentItem.product}
+                  </td>
+                );
+
                 columns.push(
                   <td key="2">
                     <button
@@ -65,18 +86,7 @@ export default function Table() {
                     </button>
                   </td>
                 );
-                columns.push(
-                  <td key="3">
-                    <button
-                      className="btn btn-success  btn-sm"
-                      onClick={() => {
-                        SetProductEdited(currentItem.id);
-                      }}
-                    >
-                      Edit
-                    </button>
-                  </td>
-                );
+
                 return (
                   <tr key={currentItem.id}>
                     {currentItem.id === productEdited ? (
