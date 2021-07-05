@@ -12,7 +12,13 @@ export default function Add(props) {
     };
 
     const apiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products`;
-    axios.post(apiUrl, newProduct).then(props.onChange);
+
+    if (!props.item) {
+      axios.post(apiUrl, newProduct).then(props.onChange);
+    } else {
+      newProduct.id = props.item.id;
+      axios.put(apiUrl + `/${props.item.id}`, newProduct).then(props.onChange);
+    }
   }
 
   return (
@@ -25,6 +31,7 @@ export default function Add(props) {
                 type="text"
                 className="form-control"
                 placeholder="example: banana"
+                //value={props.item?.product}
               />
             </span>
           </div>
@@ -34,6 +41,7 @@ export default function Add(props) {
                 type="number"
                 className="form-control"
                 placeholder="quant."
+                //value={props.item?.amount}
               />
             </span>
           </div>
