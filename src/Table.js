@@ -5,7 +5,9 @@ import axios from "axios";
 export default function Table() {
   const [products, setProducts] = useState([]);
   const [lastUpdate, setLastUpdate] = useState(0);
+  const [productEdited, SetProductEdited] = useState(null);
 
+  //1
   function displayProducts(response) {
     setProducts(response.data);
   }
@@ -15,12 +17,15 @@ export default function Table() {
     axios.get(mockApiUrl).then(displayProducts);
   }, [lastUpdate]);
 
-  function handleClick(id) {
+  //2
+  function handleClickDelete(id) {
     const apiUrl = `https://60a43063fbd48100179dbb84.mockapi.io/products/${id}`;
     axios.delete(apiUrl).then(() => {
       setLastUpdate(lastUpdate + 1);
     });
   }
+
+  //3
   function addItem() {
     setLastUpdate(lastUpdate + 1);
   }
@@ -34,7 +39,7 @@ export default function Table() {
       />
       <div className="row">
         <h6 className="display-6">Your current list of products</h6>
-        <div className="col-md-4 offset-md-4">
+        <div className="col-md-6 offset-md-3">
           <table className="table table-bordered">
             <thead>
               <tr>
@@ -44,21 +49,49 @@ export default function Table() {
             </thead>
             <tbody>
               {products.map((currentItem) => {
+                let columns = [];
+                columns.push(<td key="0">{currentItem.amount}</td>);
+                columns.push(<td key="1">{currentItem.product}</td>);
+                columns.push(
+                  <td key="2">
+                    <button
+                      type="submit"
+                      className="btn btn-danger  btn-sm"
+                      onClick={() => {
+                        handleClickDelete(currentItem.id);
+                      }}
+                    >
+                      X
+                    </button>
+                  </td>
+                );
+                columns.push(
+                  <td key="3">
+                    <button
+                      className="btn btn-success  btn-sm"
+                      onClick={() => {
+                        SetProductEdited(currentItem.id);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                );
                 return (
                   <tr key={currentItem.id}>
-                    <td>{currentItem.amount}</td>
-                    <td>{currentItem.product}</td>
-                    <td>
-                      <button
-                        type="submit"
-                        className="btn btn-danger  btn-sm"
-                        onClick={() => {
-                          handleClick(currentItem.id);
-                        }}
-                      >
-                        X
-                      </button>
-                    </td>
+                    {currentItem.id === productEdited ? (
+                      <td colSpan="4">
+                        <Add
+                          onChange={() => {
+                            SetProductEdited(null);
+                            addItem();
+                          }}
+                          item={currentItem}
+                        />
+                      </td>
+                    ) : (
+                      columns
+                    )}
                   </tr>
                 );
               })}
