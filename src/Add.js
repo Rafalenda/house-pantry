@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Add.css";
 import axios from "axios";
 
 export default function Add(props) {
+  const [productName, setProductName] = useState(props.item?.product);
+  const [productAmount, setProductAmount] = useState(props.item?.amount);
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -21,6 +24,13 @@ export default function Add(props) {
     }
   }
 
+  function keepProductName(event) {
+    setProductName(event.target.value);
+  }
+  function keepProductAmount(event) {
+    setProductAmount(event.target.value);
+  }
+
   return (
     <div className="Add">
       <div className="container">
@@ -31,7 +41,8 @@ export default function Add(props) {
                 type="text"
                 className="form-control"
                 placeholder="example: banana"
-                //value={props.item?.product}
+                onChange={keepProductName}
+                value={productName}
               />
             </span>
           </div>
@@ -41,7 +52,8 @@ export default function Add(props) {
                 type="number"
                 className="form-control"
                 placeholder="quant."
-                //value={props.item?.amount}
+                onChange={keepProductAmount}
+                value={productAmount}
               />
             </span>
           </div>
